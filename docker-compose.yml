@@ -1,0 +1,25 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: .
+    ports:
+      - '3000:3000'
+    depends_on:
+      - database
+      - rabbitmq
+    environment:
+      MONGODB_URI: mongodb://database:27017/test-backend
+      RABBITMQ_HOST: rabbitmq
+
+  database:
+    image: mongo
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_DATABASE: test-backend
+  rabbitmq:
+    image: "rabbitmq:management"
+    ports:
+      - "5672:5672"    # Port AMQP
+      - "15672:15672"  # Port RabbitMQ Management UI
