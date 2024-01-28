@@ -1,4 +1,3 @@
-// user.model.ts
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
@@ -26,7 +25,7 @@ export class User extends Document {
   birthday: string;
 
   @Prop({ type: String })
-  horospace: string;
+  horoscope: string;
 
   @Prop({ type: String })
   zodiac: string;
@@ -36,5 +35,8 @@ export class User extends Document {
 
   @Prop()
   weight: number;
+
+  @Prop({ type: [String], default: [] })
+  interests: string[];
 }
 export const UserSchema = SchemaFactory.createForClass(User);

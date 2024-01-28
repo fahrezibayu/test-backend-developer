@@ -1,4 +1,3 @@
-// src/auth/auth.service.ts
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { CreateUserDto, RegisterUserDto } from '../user/dto/create-user.dto';
@@ -20,7 +19,7 @@ export class AuthService {
     }
 
     const hashedPassword = await bcrypt.hash(RegisterUserDto.password, 10);
-    // Generate UUID
+    
     const userId = uuidv4();
     const user: User = await this.userService.registerUser({
       uuid: userId,
@@ -30,10 +29,11 @@ export class AuthService {
       name: '',
       gender: '',
       birthday: '',
-      horospace: '',
+      horoscope: '',
       zodiac: '',
       height: 0,
       weight: 0,
+      interests: []
     });
 
     return user;
@@ -49,13 +49,11 @@ export class AuthService {
 
     const token = jwt.sign({ username: user.username, sub: user._id }, 'testing-api-backend', { expiresIn: '1h' });
 
-    // return { token };
     return { message: 'Login berhasil', token };
   }
 
   async generateJwtToken(user: { username: string; password: string }): Promise<string> {
-    // const payload = { username: user.username, sub: user.password };
-    return jwt.sign({ username: user.username, sub: user.password }, 'testing-api-backend', { expiresIn: '1h' });
+   return jwt.sign({ username: user.username, sub: user.password }, 'testing-api-backend', { expiresIn: '1h' });
   }
 
   async validateJwtToken(token: string): Promise<boolean> {

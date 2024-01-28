@@ -1,4 +1,3 @@
-// user.service.ts
 import { Injectable,NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -9,16 +8,10 @@ import { CreateUserDto, UpdateUserDto, RegisterUserDto } from './dto/create-user
 export class UserService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
-  // async createUser(createUserDto: CreateUserDto): Promise<User> {
-  //   const createdUser = new this.userModel(createUserDto);
-  //   return createdUser.save();
-  // }
-
   async registerUser(registerUserDto: RegisterUserDto): Promise<User> {
     const { username } = registerUserDto;
     const { email } = registerUserDto;
-
-    // Check if the user already exists
+    
     const existingUser = await this.userModel.findOne({ username }).exec();
     if (existingUser) {
       throw new NotFoundException('Username already exists');
@@ -30,7 +23,6 @@ export class UserService {
     }
 
 
-    // Create a new user
     const createdUser = new this.userModel(registerUserDto);
     return createdUser.save();
   }
@@ -39,7 +31,6 @@ export class UserService {
     const { username } = createUserDto;
     const { email } = createUserDto;
 
-    // Check if the user already exists
     const existingUser = await this.userModel.findOne({ username }).exec();
     if (existingUser) {
       throw new NotFoundException('Username already exists');
@@ -51,7 +42,6 @@ export class UserService {
     }
 
 
-    // Create a new user
     const createdUser = new this.userModel(createUserDto);
     return createdUser.save();
   }
@@ -67,10 +57,7 @@ export class UserService {
   async findUserByEmail(email: string): Promise<User | null> {
     return this.userModel.findOne({ email }).exec();
   }
-  // async findAllUsers(): Promise<User[]> {
-  //   return this.userModel.find().exec();
-  // }
-
+  
   async findUserById(userId: string): Promise<User> {
     return this.userModel.findById(userId).exec();
   }

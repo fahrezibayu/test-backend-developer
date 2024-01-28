@@ -1,4 +1,3 @@
-// interfaces/user.interface.ts
 import { Document } from 'mongoose';
 
 export interface User extends Document {
@@ -9,8 +8,9 @@ export interface User extends Document {
   name: string;
   gender: string;
   birthday: string;
-  horospace: string;
+  horoscope: string;
   zodiac: string;
   height: number;
   weight: number;
+  interests: string[];
 }

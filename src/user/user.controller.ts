@@ -1,4 +1,3 @@
-// user.controller.ts
 import { Controller, Get, Post, Put, Delete, Param, Body, UseGuards,ValidationPipe,UnauthorizedException } from '@nestjs/common';
 import { UserService } from './user.service';
 import { AuthGuard } from '../auth/auth.guard';
@@ -8,11 +7,11 @@ import * as bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
 
 @UseGuards(AuthGuard)
-@Controller('user')
+@Controller('api')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
+  @Post("createProfile")
   async createUser(@Body(ValidationPipe) createUserDto: CreateUserDto): Promise<User> {
 
     const existingUser = await this.userService.findUserByUsername(createUserDto.username);
@@ -22,7 +21,7 @@ export class UserController {
     }
 
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
-    // Generate UUID
+    
     const userId = uuidv4();
     const user: User = await this.userService.createUser({
       uuid: userId,
@@ -32,29 +31,30 @@ export class UserController {
       name: createUserDto.name,
       gender: createUserDto.gender,
       birthday: createUserDto.birthday,
-      horospace: createUserDto.horospace,
+      horoscope: createUserDto.horoscope,
       zodiac: createUserDto.zodiac,
       height: createUserDto.height,
       weight: createUserDto.weight,
+      interests: createUserDto.interests
     });
 
     return user;
-    // return this.userService.createUser(createUserDto);
+    
   }
 
-  @Get()
+  @Get("getProfile")
   async findAllUsers(): Promise<User[]> {
     console.log(this.userService.findAllUsers());
     
     return this.userService.findAllUsers();
   }
 
-  @Get(':id')
+  @Get('getDetailProfile/:id')
   async findUserById(@Param('id') userId: string): Promise<User> {
     return this.userService.findUserById(userId);
   }
 
-  @Put(':id')
+  @Put('updateProfile/:id')
   async updateUser(@Param('id') userId: string, @Body() updateUserDto: UpdateUserDto): Promise<User> {
     const hashedPassword = await bcrypt.hash(updateUserDto.password, 10);
 
@@ -65,15 +65,16 @@ export class UserController {
       name: updateUserDto.name,
       gender: updateUserDto.gender,
       birthday: updateUserDto.birthday,
-      horospace: updateUserDto.horospace,
+      horoscope: updateUserDto.horoscope,
       zodiac: updateUserDto.zodiac,
       height: updateUserDto.height,
       weight: updateUserDto.weight,
+      interests: updateUserDto.interests
     });
     return user
   }
 
-  @Delete(':id')
+  @Delete('deleteProfile/:id')
   async deleteUser(@Param('id') userId: string): Promise<User> {
     return this.userService.deleteUser(userId);
   }

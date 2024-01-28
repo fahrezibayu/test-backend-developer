@@ -19,7 +19,6 @@ describe('RabbitMQService', () => {
 
     await service.sendMessage(queue, message);
 
-    // Add your assertions here
   });
 
   it('should receive a message from RabbitMQ', async () => {
@@ -29,7 +28,6 @@ describe('RabbitMQService', () => {
 
     const receivedMessage = await service.receiveMessage(queue);
 
-    // Add your assertions here
     expect(receivedMessage).toEqual(message);
   });
 });

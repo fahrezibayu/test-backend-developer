@@ -1,9 +1,8 @@
-// auth.controller.ts
 import { Controller, Post, Body,ValidationPipe  } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../user/dto/create-user.dto';
 
-@Controller('auth')
+@Controller('api')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 

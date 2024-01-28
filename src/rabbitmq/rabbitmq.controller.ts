@@ -1,10 +1,9 @@
-// app.controller.ts
 import { Controller, Post, Body,UseGuards } from '@nestjs/common';
 import { RabbitMQService } from './rabbitmq.service';
 import { AuthGuard } from '../auth/auth.guard';
 
 @UseGuards(AuthGuard)
-@Controller('rabbitmq')
+@Controller('api')
 export class RabbitMQController {
   constructor(private readonly rabbitMQService: RabbitMQService) {}
 

@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty, IsArray } from 'class-validator';
 
 export class RegisterUserDto {
   @IsString()
@@ -19,13 +19,15 @@ export class RegisterUserDto {
 
   gender?: string;
 
-  horospace?: string;
+  horoscope?: string;
 
   zodiac?: string;
 
   height?: number;
 
   weight?: number;
+
+  interests?: string[];
 }
 
 export class CreateUserDto {
@@ -47,13 +49,15 @@ export class CreateUserDto {
 
   gender?: string;
 
-  horospace?: string;
+  horoscope?: string;
 
   zodiac?: string;
 
   height?: number;
 
   weight?: number;
+
+  interests?: string[];
 }
 
 export class UpdateUserDto {
@@ -73,11 +77,13 @@ export class UpdateUserDto {
 
   gender?: string;
 
-  horospace?: string;
+  horoscope?: string;
 
   zodiac?: string;
 
   height?: number;
 
   weight?: number;
+
+  interests?: string[];
 }

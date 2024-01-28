@@ -1,4 +1,3 @@
-// rabbitmq.service.ts
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import * as amqp from 'amqplib';
 
@@ -7,9 +6,6 @@ export class RabbitMQService implements OnModuleInit {
   private channel: amqp.Channel;
 
   async onModuleInit() {
-    // Ganti amqp://localhost:5672 menjadi amqp://rabbitmq:5672
-    // const connection = await amqp.connect('amqp://rabbitmq:5672');
-    // const connection = await amqp.connect('amqp://localhost:5672');
     const rabbitmqHost = process.env.RABBITMQ_HOST || 'localhost';
     const connection = await amqp.connect(`amqp://${rabbitmqHost}:5672`);
     this.channel = await connection.createChannel();
