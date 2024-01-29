@@ -83,6 +83,7 @@ Register
     password : string,
     email : string
   }
+
 Login
 - http://localhost:3000/api/login
   body type json
@@ -120,6 +121,7 @@ Create User
     weight : number,
     interest : []
   }
+
 Update User
 - http://localhost:3000/api/updateProfile/:id
   header with auth
@@ -137,7 +139,7 @@ Update User
     height : number,
     weight : number,
     interest : []
-  }=
+  }
 
 Send Message With Rabbit
 - http://localhost:3000/api/send-message
