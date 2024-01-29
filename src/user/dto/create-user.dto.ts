@@ -30,6 +30,18 @@ export class RegisterUserDto {
   interests?: string[];
 }
 
+export class LoginUserDto {
+ 
+  @IsString()
+  @IsNotEmpty({ message: 'Username or email cannot be empty' })
+  usernameOrEmail: string;
+
+  @IsString()
+  @IsNotEmpty({ message: 'Password cannot be empty' })
+  password: string;
+
+}
+
 export class CreateUserDto {
   @IsString()
   @IsNotEmpty({ message: 'Username cannot be empty' })

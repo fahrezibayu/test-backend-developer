@@ -89,7 +89,7 @@ Login
   body type json
   type POST
   {
-    "username" : "string",
+    "usernameOrEmail" : "username or email",
     "password" : "string"
   }
 

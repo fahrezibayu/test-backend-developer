@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from '../user/user.service';
-import { CreateUserDto, RegisterUserDto } from '../user/dto/create-user.dto';
+import { CreateUserDto, RegisterUserDto, LoginUserDto } from '../user/dto/create-user.dto';
 import { User } from '../user/interfaces/user.interface';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
@@ -40,10 +40,10 @@ export class AuthService {
   }
 
 
-  async login(createUserDto: CreateUserDto): Promise<any> {
-    const user = await this.userService.findUserByUsername(createUserDto.username);
+  async login(loginUserDto: LoginUserDto): Promise<any> {
+    const user = await this.userService.findUserByUsernameOrEmail(loginUserDto.usernameOrEmail);
 
-    if (!user || !(await bcrypt.compare(createUserDto.password, user.password))) {
+    if (!user || !(await bcrypt.compare(loginUserDto.password, user.password))) {
       throw new UnauthorizedException('Invalid credentials');
     }
 

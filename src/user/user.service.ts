@@ -54,6 +54,12 @@ export class UserService {
     return this.userModel.findOne({ username }).exec();
   }
 
+  async findUserByUsernameOrEmail(usernameOrEmail: string): Promise<User | null> {
+    return this.userModel.findOne({
+      $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
+    });
+  }
+
   async findUserByEmail(email: string): Promise<User | null> {
     return this.userModel.findOne({ email }).exec();
   }
