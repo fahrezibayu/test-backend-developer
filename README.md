@@ -74,88 +74,87 @@ Nest is [MIT licensed](LICENSE).
 
 ## EndPoint
 ```bash
-Register <br>
-- http://localhost:3000/api/register <br>
-  body type json <br>
-  type POST <br>
-  { <br>
-    username : string, <br>
-    password : string, <br>
-    email : string <br>
-  } <br>
-Login <br>
-- http://localhost:3000/api/login <br>
-  body type json <br>
-  type POST <br>
-  { <br>
-    username : string, <br>
-    password : string, <br>
-  } <br>
+Register
+- http://localhost:3000/api/register
+  body type json
+  type POST
+  {
+    username : string,
+    password : string,
+    email : string
+  }
+Login
+- http://localhost:3000/api/login
+  body type json
+  type POST
+  {
+    username : string,
+    password : string,
+  }
 
-Read User <br>
-- http://localhost:3000/api/getProfile <br>
-  header with auth <br>
-  type GET <br>
+Read User
+- http://localhost:3000/api/getProfile
+  header with auth
+  type GET
   
-Read Detail User <br>
-- http://localhost:3000/api/getDetailProfile/:id <br>
-  header with auth <br>
-  type GET <br>
+Read Detail User
+- http://localhost:3000/api/getDetailProfile/:id
+  header with auth
+  type GET
 
-Create User <br>
-- http://localhost:3000/api/createProfile <br>
-  header with auth <br>
-  body type json <br>
-  type POST <br>
-  { <br>
-    username : string, <br>
-    password : string, <br>
-    email : string <br>
-    name : string <br>
-    birthday : string <br>
-    gender : string <br>
-    horoscope : string <br>
-    zodiac : string <br>
-    height : number <br>
-    weight : number <br>
-    interest : [] <br>
-  } <br>
+Create User
+- http://localhost:3000/api/createProfile
+  header with auth
+  body type json
+  type POST
+  {
+    username : string,
+    password : string,
+    email : string,
+    name : string,
+    birthday : string,
+    gender : string,
+    horoscope : string,
+    zodiac : string,
+    height : number,
+    weight : number,
+    interest : []
+  }
+Update User
+- http://localhost:3000/api/updateProfile/:id
+  header with auth
+  body type json
+  type PUT
+  {
+    username : string,
+    password : string,
+    email : string,
+    name : string,
+    birthday : string,
+    gender : string,
+    horoscope : string,
+    zodiac : string,
+    height : number,
+    weight : number,
+    interest : []
+  }=
 
-Update User <br>
-- http://localhost:3000/api/updateProfile/:id <br>
-  header with auth <br>
-  body type json <br>
-  type PUT <br>
-  { <br>
-    username : string, <br>
-    password : string, <br>
-    email : string <br>
-    name : string <br>
-    birthday : string <br>
-    gender : string <br>
-    horoscope : string <br>
-    zodiac : string <br>
-    height : number <br>
-    weight : number <br>
-    interest : [] <br>
-  } <br>
+Send Message With Rabbit
+- http://localhost:3000/api/send-message
+  header with auth
+  body type json
+  type POST
+  {
+    queue : string,
+    message : string,
+  }
 
-Send Message With Rabbit <br>
-- http://localhost:3000/api/send-message <br>
-  header with auth <br>
-  body type json <br>
-  type POST <br>
-  { <br>
-    queue : string, <br>
-    message : string, <br>
-  } <br>
-
-With Message With Rabbit <br>
-- http://localhost:3000/api/send-message <br>
-  header with auth <br>
-  body type json <br>
-  type POST <br>
-  { <br>
-    queue : string, <br>
-  } <br>
+With Message With Rabbit
+- http://localhost:3000/api/send-message
+  header with auth
+  body type json
+  type POST
+  {
+    queue : string,
+  }
 ```
