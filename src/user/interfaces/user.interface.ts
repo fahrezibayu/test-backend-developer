@@ -13,4 +13,5 @@ export interface User extends Document {
   height: number;
   weight: number;
   interests: string[];
+  profilePicture: string;
 }

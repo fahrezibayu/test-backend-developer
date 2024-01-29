@@ -1,10 +1,12 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, UseGuards,ValidationPipe,UnauthorizedException } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, UseGuards,ValidationPipe,UnauthorizedException, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { UserService } from './user.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { CreateUserDto, UpdateUserDto } from './dto/create-user.dto';
 import { User } from './interfaces/user.interface'; // Pastikan diimpor dengan benar
 import * as bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { storage } from '../../multer.config';
 
 @UseGuards(AuthGuard)
 @Controller('api')
@@ -12,7 +14,13 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post("createProfile")
-  async createUser(@Body(ValidationPipe) createUserDto: CreateUserDto): Promise<User> {
+  @UseInterceptors(FileInterceptor('file', { storage }))
+  async createUser(@UploadedFile() file: any,@Body(ValidationPipe) createUserDto: CreateUserDto): Promise<User> {
+    console.log(file);
+    
+    if (file) {
+      createUserDto.profilePicture = file.filename;
+    }
 
     const existingUser = await this.userService.findUserByUsername(createUserDto.username);
 
@@ -35,7 +43,8 @@ export class UserController {
       zodiac: createUserDto.zodiac,
       height: createUserDto.height,
       weight: createUserDto.weight,
-      interests: createUserDto.interests
+      interests: createUserDto.interests,
+      profilePicture: createUserDto.profilePicture
     });
 
     return user;
@@ -55,8 +64,13 @@ export class UserController {
   }
 
   @Put('updateProfile/:id')
-  async updateUser(@Param('id') userId: string, @Body() updateUserDto: UpdateUserDto): Promise<User> {
+  @UseInterceptors(FileInterceptor('file'))
+  async updateUser(@UploadedFile() file: any,@Param('id') userId: string, @Body() updateUserDto: UpdateUserDto): Promise<User> {
     const hashedPassword = await bcrypt.hash(updateUserDto.password, 10);
+
+    if (file) {
+      updateUserDto.profilePicture = file.filename;
+    }
 
     const user: User = await this.userService.updateUser(userId,{
       username: updateUserDto.username,
@@ -69,7 +83,8 @@ export class UserController {
       zodiac: updateUserDto.zodiac,
       height: updateUserDto.height,
       weight: updateUserDto.weight,
-      interests: updateUserDto.interests
+      interests: updateUserDto.interests,
+      profilePicture: updateUserDto.profilePicture
     });
     return user
   }

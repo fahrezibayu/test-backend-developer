@@ -33,7 +33,8 @@ export class AuthService {
       zodiac: '',
       height: 0,
       weight: 0,
-      interests: []
+      interests: [],
+      profilePicture: ''
     });
 
     return user;

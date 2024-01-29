@@ -28,6 +28,8 @@ export class RegisterUserDto {
   weight?: number;
 
   interests?: string[];
+
+  profilePicture?: string;
 }
 
 export class LoginUserDto {
@@ -70,6 +72,8 @@ export class CreateUserDto {
   weight?: number;
 
   interests?: string[];
+
+  profilePicture?: string;
 }
 
 export class UpdateUserDto {
@@ -98,4 +102,6 @@ export class UpdateUserDto {
   weight?: number;
 
   interests?: string[];
+
+  profilePicture?: string;
 }

@@ -12,5 +12,6 @@ export const UserSchema = new mongoose.Schema({
   zodiac: { type: String, required: false },
   height: { type: Number, required: false },
   weight: { type: Number, required: false },
-  interests: { type: [String], default: [] }
+  interests: { type: [String], default: [] },
+  profilePicture: { type: String, required: false }
 });

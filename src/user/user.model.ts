@@ -38,5 +38,8 @@ export class User extends Document {
 
   @Prop({ type: [String], default: [] })
   interests: string[];
+
+  @Prop({ type: String })
+  profilePicture: string;
 }
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -111,7 +111,7 @@ Read Detail User
 Create User
 - http://localhost:3000/api/createProfile
   header with auth
-  body type json
+  body type multipart form
   type POST
   {
     "username" : "string",
@@ -124,13 +124,14 @@ Create User
     "zodiac" : "string",
     "height" : number,
     "weight" : number,
-    "interests" : []
+    "interests" : [],
+    "file" : file
   }
 
 Update User
 - http://localhost:3000/api/updateProfile/:id
   header with auth
-  body type json
+  body type multipart form
   type PUT
   {
     "username" : "string",
@@ -143,7 +144,8 @@ Update User
     "zodiac" : "string",
     "height" : number,
     "weight" : number,
-    "interests" : []
+    "interests" : [],
+    "file" : file
   }
 
 Delete User

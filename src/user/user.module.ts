@@ -6,6 +6,8 @@ import { UserSchema } from './user.model';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthGuard } from '../auth/auth.guard';
 import { AuthModule } from '../auth/auth.module';
+import { MulterModule } from '@nestjs/platform-express';
+import { storage } from '../../multer.config';
 
 @Module({
   imports: [
@@ -14,7 +16,10 @@ import { AuthModule } from '../auth/auth.module';
       signOptions: { expiresIn: '1d' },
     }),
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
-    AuthModule
+    AuthModule,
+    MulterModule.register({
+      storage
+    }),
   ],
   controllers: [UserController],
   providers: [UserService,AuthGuard],
