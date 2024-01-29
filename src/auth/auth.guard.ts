@@ -1,10 +1,10 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { JwtService } from '@nestjs/jwt';
-
+import { AuthService } from './auth.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private readonly jwtService: JwtService) {}
+  constructor(private readonly jwtService: JwtService, private readonly authService: AuthService) {}
 
   canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest();
@@ -17,6 +17,10 @@ export class AuthGuard implements CanActivate {
       return false;
     }
 
+    if (this.authService.isTokenBlacklisted(token)) {
+      console.log('Token is blacklisted.');
+      return false;
+    }
     
     try {
       

@@ -4,7 +4,7 @@ import { RabbitMQController } from './rabbitmq.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AuthGuard } from '../auth/auth.guard';
-
+import { AuthModule } from '../auth/auth.module';
 @Module({
   imports: [
     JwtModule.register({
@@ -20,6 +20,7 @@ import { AuthGuard } from '../auth/auth.guard';
         },
       },
     ]),
+    AuthModule
   ],
   providers: [RabbitMQService, AuthGuard],
   exports: [RabbitMQService],

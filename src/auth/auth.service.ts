@@ -10,7 +10,7 @@ import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class AuthService {
   constructor(private readonly userService: UserService,private readonly jwtService: JwtService) { }
-
+  private blacklistedTokens: string[] = [];
   async register(RegisterUserDto: RegisterUserDto): Promise<User> {
     const existingUser = await this.userService.findUserByUsername(RegisterUserDto.username);
 
@@ -63,5 +63,13 @@ export class AuthService {
     } catch (error) {
       return false;
     }
+  }
+
+  addToBlacklist(token: string): void {
+    this.blacklistedTokens.push(token);
+  }
+
+  isTokenBlacklisted(token: string): boolean {
+    return this.blacklistedTokens.includes(token);
   }
 }

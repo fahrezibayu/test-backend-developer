@@ -5,6 +5,7 @@ import { UserService } from './user.service';
 import { UserSchema } from './user.model';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthGuard } from '../auth/auth.guard';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { AuthGuard } from '../auth/auth.guard';
       signOptions: { expiresIn: '1d' },
     }),
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
+    AuthModule
   ],
   controllers: [UserController],
   providers: [UserService,AuthGuard],

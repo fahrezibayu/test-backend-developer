@@ -8,11 +8,15 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthGuard } from '../auth/auth.guard';
 
 @Module({
-  imports: [JwtModule.register({
-    secret: 'your-secret-key',
-    signOptions: { expiresIn: '1d' },
-  }), MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])],
+  imports: [
+    JwtModule.register({
+      secret: 'testing-api-backend',
+      signOptions: { expiresIn: '1d' },
+    }),
+    MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])
+  ],
   providers: [AuthService, UserService,AuthGuard],
   controllers: [AuthController],
+  exports: [AuthService]
 })
 export class AuthModule { }
