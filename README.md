@@ -73,7 +73,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 Nest is [MIT licensed](LICENSE).
 
 ## EndPoint
-
+```bash
 Register <br>
 - http://localhost:3000/api/register <br>
   body type json <br>
@@ -158,3 +158,4 @@ With Message With Rabbit <br>
   { <br>
     queue : string, <br>
   } <br>
+```
