@@ -90,7 +90,7 @@ Login
   type POST
   {
     "username" : "string",
-    "password" : "string",
+    "password" : "string"
   }
 
 Read User
@@ -141,6 +141,11 @@ Update User
     "interests" : []
   }
 
+Delete User
+- http://localhost:3000/api/getDetailProfile/:id
+  header with auth
+  type DELETE
+
 Send Message With Rabbit
 - http://localhost:3000/api/send-message
   header with auth
@@ -148,7 +153,7 @@ Send Message With Rabbit
   type POST
   {
     "queue" : "string",
-    "message" : "string",
+    "message" : "string"
   }
 
 With Message With Rabbit
@@ -157,6 +162,6 @@ With Message With Rabbit
   body type json
   type POST
   {
-    "queue" : "string",
+    "queue" : "string"
   }
 ```
