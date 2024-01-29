@@ -93,6 +93,11 @@ Login
     "password" : "string"
   }
 
+Logout
+- http://localhost:3000/api/logout
+  with header auth
+  type POST
+
 Read User
 - http://localhost:3000/api/getProfile
   header with auth
