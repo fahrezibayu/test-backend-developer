@@ -71,3 +71,90 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## EndPoint
+
+Register <br>
+- http://localhost:3000/api/register <br>
+  body type json <br>
+  type POST <br>
+  { <br>
+    username : string, <br>
+    password : string, <br>
+    email : string <br>
+  } <br>
+Login <br>
+- http://localhost:3000/api/login <br>
+  body type json <br>
+  type POST <br>
+  { <br>
+    username : string, <br>
+    password : string, <br>
+  } <br>
+
+Read User <br>
+- http://localhost:3000/api/getProfile <br>
+  header with auth <br>
+  type GET <br>
+  
+Read Detail User <br>
+- http://localhost:3000/api/getDetailProfile/:id <br>
+  header with auth <br>
+  type GET <br>
+
+Create User <br>
+- http://localhost:3000/api/createProfile <br>
+  header with auth <br>
+  body type json <br>
+  type POST <br>
+  { <br>
+    username : string, <br>
+    password : string, <br>
+    email : string <br>
+    name : string <br>
+    birthday : string <br>
+    gender : string <br>
+    horoscope : string <br>
+    zodiac : string <br>
+    height : number <br>
+    weight : number <br>
+    interest : [] <br>
+  } <br>
+
+Update User <br>
+- http://localhost:3000/api/updateProfile/:id <br>
+  header with auth <br>
+  body type json <br>
+  type PUT <br>
+  { <br>
+    username : string, <br>
+    password : string, <br>
+    email : string <br>
+    name : string <br>
+    birthday : string <br>
+    gender : string <br>
+    horoscope : string <br>
+    zodiac : string <br>
+    height : number <br>
+    weight : number <br>
+    interest : [] <br>
+  } <br>
+
+Send Message With Rabbit <br>
+- http://localhost:3000/api/send-message <br>
+  header with auth <br>
+  body type json <br>
+  type POST <br>
+  { <br>
+    queue : string, <br>
+    message : string, <br>
+  } <br>
+
+With Message With Rabbit <br>
+- http://localhost:3000/api/send-message <br>
+  header with auth <br>
+  body type json <br>
+  type POST <br>
+  { <br>
+    queue : string, <br>
+  } <br>
