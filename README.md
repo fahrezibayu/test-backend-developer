@@ -79,9 +79,9 @@ Register
   body type json
   type POST
   {
-    username : string,
-    password : string,
-    email : string
+    "username" : "string",
+    "password" : "string",
+    "email" : "string"
   }
 
 Login
@@ -89,8 +89,8 @@ Login
   body type json
   type POST
   {
-    username : string,
-    password : string,
+    "username" : "string",
+    "password" : "string",
   }
 
 Read User
@@ -109,17 +109,17 @@ Create User
   body type json
   type POST
   {
-    username : string,
-    password : string,
-    email : string,
-    name : string,
-    birthday : string,
-    gender : string,
-    horoscope : string,
-    zodiac : string,
-    height : number,
-    weight : number,
-    interest : []
+    "username" : "string",
+    "password" : "string",
+    "email" : "string",
+    "name" : "string",
+    "birthday" : "string",
+    "gender" : "string",
+    "horoscope" : "string",
+    "zodiac" : "string",
+    "height" : number,
+    "weight" : number,
+    "interests" : []
   }
 
 Update User
@@ -128,17 +128,17 @@ Update User
   body type json
   type PUT
   {
-    username : string,
-    password : string,
-    email : string,
-    name : string,
-    birthday : string,
-    gender : string,
-    horoscope : string,
-    zodiac : string,
-    height : number,
-    weight : number,
-    interest : []
+    "username" : "string",
+    "password" : "string",
+    "email" : "string",
+    "name" : "string",
+    "birthday" : "string",
+    "gender" : "string",
+    "horoscope" : "string",
+    "zodiac" : "string",
+    "height" : number,
+    "weight" : number,
+    "interests" : []
   }
 
 Send Message With Rabbit
@@ -147,8 +147,8 @@ Send Message With Rabbit
   body type json
   type POST
   {
-    queue : string,
-    message : string,
+    "queue" : "string",
+    "message" : "string",
   }
 
 With Message With Rabbit
@@ -157,6 +157,6 @@ With Message With Rabbit
   body type json
   type POST
   {
-    queue : string,
+    "queue" : "string",
   }
 ```
